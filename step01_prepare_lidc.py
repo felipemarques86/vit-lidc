@@ -1,9 +1,7 @@
 import numpy as np
 import pylidc as pl
 from PIL import Image
-from pylidc.utils import consensus
 from tensorflow import keras
-import matplotlib.pyplot as plt
 
 MIN_BOUND = -1000.0
 # MIN_BOUND = -1500.0
@@ -16,10 +14,6 @@ def normalize(image):
     image[image>(1-PIXEL_MEAN)] = 1.
     image[image<(0-PIXEL_MEAN)] = 0.
     return np.array(255 * image, dtype="uint8")
-
-
-
-
 
 def prepare_dataset(image_size, annotation_size_perc=1):
     total_images = 0
