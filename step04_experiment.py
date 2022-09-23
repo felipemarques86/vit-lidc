@@ -21,12 +21,12 @@ def print_results(vit_object_detector, image_size, x_test, y_test):
         im = input_image
 
         # Display the image
-        ax1.imshow(im[:, :, 0], cmap=plt.cm.gray)
-        ax2.imshow(im[:, :, 0], cmap=plt.cm.gray)
+        ax1.imshow(im, cmap=plt.cm.gray)
+        ax2.imshow(im, cmap=plt.cm.gray)
 
-        input_image = cv2.resize(
-            input_image, (image_size, image_size), interpolation=cv2.INTER_AREA
-        )
+        # input_image = cv2.resize(
+        #     input_image, (image_size, image_size), interpolation=cv2.INTER_AREA
+        # )
         input_image = np.expand_dims(input_image, axis=0)
         preds = vit_object_detector.predict(input_image)[0]
 
