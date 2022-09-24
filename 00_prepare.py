@@ -1,3 +1,7 @@
-from step01_prepare_lidc import create_or_load_dataset
+from step01_prepare_lidc import process_dataset, load_images
 
-create_or_load_dataset(load=False, save=True, annotation_size_perc=0.1, file_name='lidc_processed_10p')
+#process_dataset(annotation_size_perc=1)
+
+xtrain, ytrain, xtest, ytest, images, annotations = load_images()
+
+print(len(xtrain), len(ytrain), len(xtest), len(ytest), len(images), len(annotations))
