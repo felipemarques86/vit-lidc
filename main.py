@@ -1,4 +1,4 @@
-from step01_prepare_lidc import prepare_dataset, create_or_load_dataset
+from step01_prepare_lidc import prepare_dataset, create_or_load_dataset, load_images
 from step03_vit_model import create_vit_object_detector
 from step04_experiment import run_experiment, print_results
 import time
@@ -26,7 +26,7 @@ mlp_head_units = [2048, 1024, 512, 64, 32]  # Size of the dense layers
 history = []
 num_patches = (IMAGE_SIZE // patch_size) ** 2
 
-x_train, y_train, x_test, y_test, images, annotations = create_or_load_dataset(load=True, save=False, file_name='lidc_1p.pkl')
+x_train, y_train, x_test, y_test, images, annotations = load_images()
 
 start_time = time.perf_counter()
 

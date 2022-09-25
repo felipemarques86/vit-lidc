@@ -1,8 +1,9 @@
+from pathlib import Path
+
 import numpy as np
 import pylidc as pl
 import pickle
 from PIL import Image
-from tensorflow import keras
 
 # MIN_BOUND = -1000.0
 # # MIN_BOUND = -1500.0
@@ -24,6 +25,31 @@ def save_object(obj, filename):
     with open(filename, 'wb') as outp:  # Overwrites any existing file.
         pickle.dump(obj, outp, pickle.HIGHEST_PROTOCOL)
 
+
+def load_images():
+    files = Path('D:\\LIDC-IDRI').glob('lidc_image_*')
+    images = []
+    for file in files:
+        with open(file, 'rb') as filePointer:  # Overwrites any existing file.
+            images.append(pickle.load(filePointer))
+
+    files = Path('D:\\LIDC-IDRI').glob('lidc_scaled_box_*')
+    annotations = []
+    for file in files:
+        with open(file, 'rb') as filePointer:  # Overwrites any existing file.
+            annotations.append(pickle.load(filePointer))
+
+    # Convert the list to numpy array, split to train and test dataset
+    (xtrain), (ytrain) = (
+        np.asarray(images[: int(len(images) * 0.8)]),
+        np.asarray(annotations[: int(len(annotations) * 0.8)]),
+    )
+    (xtest), (ytest) = (
+        np.asarray(images[int(len(images) * 0.8):]),
+        np.asarray(annotations[int(len(annotations) * 0.8):]),
+    )
+
+    return xtrain, ytrain, xtest, ytest, images, annotations
 
 def create_or_load_dataset(load=False, save=False, annotation_size_perc=1, file_name='lidc.pkl'):
     images = []
