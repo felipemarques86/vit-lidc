@@ -44,13 +44,10 @@ def process_dataset(annotation_size_perc=1):
 
         scaled_bbox = (float(x0) / w, float(y0) / h, float(x1) / w, float(y1) / h)
 
-        for j in range(annotation_bbox[2].start, annotation_bbox[2].stop):
-            save_object(scaled_bbox, 'D:\\LIDC-IDRI\\lidc_scaled_box_'+str(count)+'.pkl')
-            #annotations.append(scaled_bbox)
-            #images.append(vol[:, :, j])
-            save_object(vol[:, :, j], 'D:\\LIDC-IDRI\\lidc_image_'+str(count)+'.pkl')
-            count = count + 1
-            print(count)
+        save_object(scaled_bbox, 'D:\\Compact-LIDC-IDRI\\lidc_scaled_box_'+str(count)+'.pkl')
+        save_object(vol[:, :, z], 'D:\\Compact-LIDC-IDRI\\lidc_image_'+str(count)+'.pkl')
+        count = count + 1
+        print(count)
 
 def load_images():
     files = Path('D:\\LIDC-IDRI').glob('lidc_image_*')
