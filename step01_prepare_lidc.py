@@ -44,8 +44,8 @@ def process_dataset(annotation_size_perc=1):
 
         scaled_bbox = (float(x0) / w, float(y0) / h, float(x1) / w, float(y1) / h)
 
-        save_object(scaled_bbox, 'D:\\Compact-LIDC-IDRI\\lidc_scaled_box_'+str(count)+'.pkl')
-        save_object(vol[:, :, z], 'D:\\Compact-LIDC-IDRI\\lidc_image_'+str(count)+'.pkl')
+        save_object(scaled_bbox, 'C:\\Dissertacao\\Datasets\\Compact-LIDC-IDRI\\lidc_scaled_box_'+str(count)+'.pkl')
+        save_object(vol[:, :, z], 'C:\\Dissertacao\\Datasets\\Compact-LIDC-IDRI\\lidc_image_'+str(count)+'.pkl')
         count = count + 1
         print(count)
 

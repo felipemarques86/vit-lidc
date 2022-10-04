@@ -1,4 +1,4 @@
-name: prepare-lidc
+name: base-prepare-lidc
 channels:
   - conda-forge
   - defaults
@@ -8,5 +8,5 @@ dependencies:
   - pip=22.1.2
   - pip:
     - pylidc==0.2.3
-prefix: /home/felipe/anaconda3/envs/prepare-lidc
+prefix: /home/felipe/anaconda3/envs/base-prepare-lidc
 
