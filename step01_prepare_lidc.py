@@ -3,6 +3,7 @@ from pathlib import Path
 import numpy as np
 import pylidc as pl
 import pickle
+import gc
 from PIL import Image
 
 # MIN_BOUND = -1000.0
@@ -27,29 +28,80 @@ def save_object(obj, filename):
 
 
 def load_images():
-    files = Path('D:\\LIDC-IDRI').glob('lidc_image_*')
-    images = []
-    for file in files:
-        with open(file, 'rb') as filePointer:  # Overwrites any existing file.
-            images.append(pickle.load(filePointer))
+    log = open('log.txt', 'a')
+    total_images = 6858
 
-    files = Path('D:\\LIDC-IDRI').glob('lidc_scaled_box_*')
-    annotations = []
-    for file in files:
-        with open(file, 'rb') as filePointer:  # Overwrites any existing file.
-            annotations.append(pickle.load(filePointer))
+    #files = Path('/media/felipe/Blade 14/Dissertacao/Datasets/Processed-LIDC-IDRI').glob('lidc_image_*')
+    #total_images = 0
+    #for file in files:
+    #    total_images = total_images + 1
+
+    print(total_images)
+
+    #files = Path('/media/felipe/Blade 14/Dissertacao/Datasets/Processed-LIDC-IDRI').glob('lidc_image_*')
+    x_train = []
+    x_test = []
+    y_train = []
+    y_test = []
+    train_to = total_images*0.8
+    #log.write('++++++ List of Images +++++')
+    for i in range(0, total_images):
+        image_filename = '/media/felipe/Blade 14/Dissertacao/Datasets/Compact-LIDC-IDRI/lidc_image_'+str(i)+'.pkl'
+        with open(image_filename, 'rb') as filePointer:  # Overwrites any existing file.
+            if len(x_train) < train_to:
+                #log.write('TR - ' + image_filename+'\r\n')
+                x_train.append(pickle.load(filePointer))
+            else:
+                #log.write('TS - ' + image_filename+'\r\n')
+                x_test.append(pickle.load(filePointer))
+
+        bbox_filename = '/media/felipe/Blade 14/Dissertacao/Datasets/Compact-LIDC-IDRI/lidc_scaled_box_'+str(i)+'.pkl'
+        with open(bbox_filename, 'rb') as filePointer:  # Overwrites any existing file.
+            if(len(y_train) < train_to):
+                #log.write('TR - ' + bbox_filename+'\r\n')
+                y_train.append(pickle.load(filePointer))
+            else:
+                #log.write('TS - ' + bbox_filename+'\r\n')
+                y_test.append(pickle.load(filePointer))
+
+    #files = Path('/media/felipe/Blade 14/Dissertacao/Datasets/Processed-LIDC-IDRI').glob('lidc_scaled_box_*')
+
+    #log.write('++++++ List of BBoxes +++++')
+    #for file in files:
+    #    trainTo = total_images*0.8
+    #    with open(file, 'rb') as filePointer:  # Overwrites any existing file.
+    #        if(len(y_train) < trainTo):
+    #            #log.write('TR - ' + file.name+'\r\n')
+    #            y_train.append(pickle.load(filePointer))
+    #        else:
+    #            #log.write('TS - ' + file.name+'\r\n')
+    #           y_test.append(pickle.load(filePointer))
+
+    (xtest), (ytest) = (
+        np.asarray(x_test),
+        np.asarray(y_test),
+    )
+
+    del x_test, y_test
 
     # Convert the list to numpy array, split to train and test dataset
-    (xtrain), (ytrain) = (
-        np.asarray(images[: int(len(images) * 0.8)]),
-        np.asarray(annotations[: int(len(annotations) * 0.8)]),
-    )
-    (xtest), (ytest) = (
-        np.asarray(images[int(len(images) * 0.8):]),
-        np.asarray(annotations[int(len(annotations) * 0.8):]),
-    )
+    print('Convert ytrain to np')
+    ytrain = np.asarray(y_train)
 
-    return xtrain, ytrain, xtest, ytest, images, annotations
+    print('GC y_train')
+    del y_train
+    gc.collect()
+
+    print('Convert xtrain to np')
+    xtrain = np.asarray(x_train)
+
+    print('GC x_train')
+    del x_train
+    gc.collect()
+
+    log.close()
+
+    return xtrain, ytrain, xtest, ytest
 
 def create_or_load_dataset(load=False, save=False, annotation_size_perc=1, file_name='lidc.pkl'):
     images = []

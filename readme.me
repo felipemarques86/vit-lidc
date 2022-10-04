@@ -1,0 +1,148 @@
+# Trained models
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ALPHA
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+TRAIN_SIZE = 0.8
+TEST_SIZE = 1 - TRAIN_SIZE
+IMAGE_SIZE = 512
+SCAN_COUNT_PERC = 0.01
+patch_size = 64  # Size of the patches to be extracted from the input image
+input_shape = (IMAGE_SIZE, IMAGE_SIZE, 1)  # input image shape
+learning_rate = 0.002
+weight_decay = 0.00001
+batch_size = 64
+num_epochs = 150
+num_patches = (IMAGE_SIZE // patch_size) ** 2
+projection_dim = 64
+num_heads = 12
+# Size of the transformer layers
+transformer_units = [
+    projection_dim * 2,
+    projection_dim,
+]
+transformer_layers = 12
+mlp_head_units = [2048, 1024, 512, 64, 32]  # Size of the dense layers
+history = []
+num_patches = (IMAGE_SIZE // patch_size) ** 2
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+BRAVO
+
+
+TRAIN_SIZE = 0.8
+TEST_SIZE = 1 - TRAIN_SIZE
+IMAGE_SIZE = 512
+SCAN_COUNT_PERC = 0.01
+patch_size = 64  # Size of the patches to be extracted from the input image
+input_shape = (IMAGE_SIZE, IMAGE_SIZE, 1)  # input image shape
+learning_rate = 0.0005
+weight_decay = 0.000001
+batch_size = 64
+num_epochs = 200
+num_patches = (IMAGE_SIZE // patch_size) ** 2
+projection_dim = 64
+num_heads = 16
+# Size of the transformer layers
+transformer_units = [
+    projection_dim * 2,
+    projection_dim,
+]
+transformer_layers = 16
+mlp_head_units = [2048, 1024, 512, 64, 32]  # Size of the dense layers
+history = []
+num_patches = (IMAGE_SIZE // patch_size) ** 2
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+CHARLIE
+
+TRAIN_SIZE = 0.8
+TEST_SIZE = 1 - TRAIN_SIZE
+IMAGE_SIZE = 512
+SCAN_COUNT_PERC = 0.01
+patch_size = 32 # Size of the patches to be extracted from the input image
+input_shape = (IMAGE_SIZE, IMAGE_SIZE, 1)  # input image shape
+learning_rate = 0.002
+weight_decay = 0.00001
+batch_size = 12
+num_epochs = 29
+num_patches = (IMAGE_SIZE // patch_size) ** 2
+projection_dim = 64
+num_heads = 16
+# Size of the transformer layers
+transformer_units = [
+    projection_dim * 2,
+    projection_dim,
+]
+transformer_layers = 16
+mlp_head_units = [2048, 1024, 512, 64, 32]  # Size of the dense layers
+history = []
+num_patches = (IMAGE_SIZE // patch_size) ** 2
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+DELTA
+
+
+TRAIN_SIZE = 0.8
+TEST_SIZE = 1 - TRAIN_SIZE
+IMAGE_SIZE = 512
+SCAN_COUNT_PERC = 0.01
+patch_size = 32 # Size of the patches to be extracted from the input image
+input_shape = (IMAGE_SIZE, IMAGE_SIZE, 1)  # input image shape
+learning_rate = 0.0005
+weight_decay = 0.0001
+batch_size = 12
+num_epochs = 29
+num_patches = (IMAGE_SIZE // patch_size) ** 2
+projection_dim = 64
+num_heads = 16
+# Size of the transformer layers
+transformer_units = [
+    projection_dim * 2,
+    projection_dim,
+]
+transformer_layers = 16
+mlp_head_units = [2048, 1024, 512, 64, 32]  # Size of the dense layers
+history = []
+num_patches = (IMAGE_SIZE // patch_size) ** 2
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+ECHO
+
+
+TRAIN_SIZE = 0.8
+TEST_SIZE = 1 - TRAIN_SIZE
+IMAGE_SIZE = 512
+SCAN_COUNT_PERC = 0.01
+patch_size = 32 # Size of the patches to be extracted from the input image
+input_shape = (IMAGE_SIZE, IMAGE_SIZE, 1)  # input image shape
+learning_rate = 0.001
+weight_decay = 0.0001
+batch_size = 12
+num_epochs = 56
+num_patches = (IMAGE_SIZE // patch_size) ** 2
+projection_dim = 64
+num_heads = 16
+# Size of the transformer layers
+transformer_units = [
+    projection_dim * 2,
+    projection_dim,
+]
+transformer_layers = 16
+mlp_head_units = [2048, 1024, 512, 64, 32]  # Size of the dense layers
+history = []
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+ALPHA COMPACT
+

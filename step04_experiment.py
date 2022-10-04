@@ -11,7 +11,7 @@ def print_results(vit_object_detector, image_size, x_test, y_test):
     import matplotlib.patches as patches
 
     # Saves the model in current path
-    vit_object_detector.save("vit_object_detector.h5", save_format="h5")
+    vit_object_detector.save("compact-alpha.h5", save_format="h5")
 
     i, mean_iou = 0, 0
 

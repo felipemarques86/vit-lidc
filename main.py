@@ -7,11 +7,11 @@ TRAIN_SIZE = 0.8
 TEST_SIZE = 1 - TRAIN_SIZE
 IMAGE_SIZE = 512
 SCAN_COUNT_PERC = 0.01
-patch_size = 64  # Size of the patches to be extracted from the input image
+patch_size = 32 # Size of the patches to be extracted from the input image
 input_shape = (IMAGE_SIZE, IMAGE_SIZE, 1)  # input image shape
 learning_rate = 0.002
 weight_decay = 0.00001
-batch_size = 64
+batch_size = 32
 num_epochs = 150
 num_patches = (IMAGE_SIZE // patch_size) ** 2
 projection_dim = 64
@@ -26,7 +26,7 @@ mlp_head_units = [2048, 1024, 512, 64, 32]  # Size of the dense layers
 history = []
 num_patches = (IMAGE_SIZE // patch_size) ** 2
 
-x_train, y_train, x_test, y_test, images, annotations = load_images()
+x_train, y_train, x_test, y_test = load_images()
 
 start_time = time.perf_counter()
 

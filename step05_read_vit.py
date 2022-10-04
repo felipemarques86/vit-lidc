@@ -12,7 +12,7 @@ from common import bounding_box_intersection_over_union
 def load_results(vit_object_detector,  x_test, y_test):
     import matplotlib.patches as patches
 
-    vit_object_detector.load("vit_object_detector.h5")
+    vit_object_detector.load("alpha.h5")
 
     i, mean_iou = 0, 0
 
