@@ -4,6 +4,7 @@ import numpy as np
 import pylidc as pl
 import pickle
 import gc
+import tensorflow as tf
 from PIL import Image
 
 # MIN_BOUND = -1000.0
@@ -25,7 +26,6 @@ class Lidc:
 def save_object(obj, filename):
     with open(filename, 'wb') as outp:  # Overwrites any existing file.
         pickle.dump(obj, outp, pickle.HIGHEST_PROTOCOL)
-
 
 def load_images():
     log = open('log.txt', 'a')
@@ -50,7 +50,8 @@ def load_images():
         with open(image_filename, 'rb') as filePointer:  # Overwrites any existing file.
             if len(x_train) < train_to:
                 #log.write('TR - ' + image_filename+'\r\n')
-                x_train.append(pickle.load(filePointer))
+                raw_img = pickle.load(filePointer)
+                x_train.append(raw_img)
             else:
                 #log.write('TS - ' + image_filename+'\r\n')
                 x_test.append(pickle.load(filePointer))
